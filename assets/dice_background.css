@@ -1,0 +1,571 @@
+@keyframes tumble {
+    0% {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: perspective(800px) rotateY(0deg);
+    }
+
+    100% {
+        transform: perspective(800px) rotateY(360deg);
+    }
+}
+
+
+#background {
+    z-index: 99;
+}
+
+#dice {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform-style: preserve-3d;
+    animation: spin 10s infinite linear;
+    transform: perspective(800px);
+}
+
+#d4-wrap {
+    transform-style: preserve-3d;
+    transform: translateX(346.41px) translateZ(200px);
+}
+
+#d6-wrap {
+    transform-style: preserve-3d;
+    transform: translateX(-346.41px) translateZ(200px);
+}
+
+#d8-wrap {
+    transform-style: preserve-3d;
+    transform: translateX(-346.41px) translateZ(-200px);
+}
+
+#d10-wrap {
+    transform-style: preserve-3d;
+    transform: translateZ(400px);
+}
+
+#d12-wrap {
+    transform-style: preserve-3d;
+    transform: translateZ(-400px);
+}
+
+#d20-wrap {
+    transform-style: preserve-3d;
+    transform: translateX(346.41px) translateZ(-200px);
+}
+
+#d4,
+#d6,
+#d8,
+#d10,
+#d12,
+#d20 {
+    transform-style: preserve-3d;
+    animation: tumble 8s infinite linear;
+}
+
+.d4 {
+    --width: 60px;
+    --height: 0.8660254;
+    --center: 0.288675;
+    --offset: calc(var(--center)*var(--center));
+    --dihedral-angle: 70.528779deg;
+    --co-dihedral: calc(90deg - var(--dihedral-angle));
+    --luminance: 50%;
+    font-size: 1.5rem;
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--width) * (var(--height)));
+    background-color: hsla(30, 100%, var(--luminance), 0.4);
+    position: absolute;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform-origin: 50% calc(var(--center)*(var(--width)));
+    transform-style: preserve-3d;
+}
+
+.d4[data-side='1'] {
+    --luminance: 40%;
+    transform: rotateY(120deg) rotateX(var(--co-dihedral)) translateZ(calc(var(--offset)*(var(--width))));
+}
+
+.d4[data-side='2'] {
+    --luminance: 50%;
+    transform: rotateX(var(--co-dihedral)) translateZ(calc(var(--offset)*(var(--width))));
+}
+
+.d4[data-side='3'] {
+    --luminance: 60%;
+    transform: rotateY(240deg) rotateX(var(--co-dihedral)) translateZ(calc(var(--offset)*(var(--width))));
+}
+
+.d4[data-side='4'] {
+    --luminance: 70%;
+    transform: rotateY(180deg) rotateX(270deg) translateZ(calc((1 + var(--center))*var(--width))) translateY(calc(0px - (var(--height)*(var(--width)))));
+}
+
+[data-number]::after {
+    position: absolute;
+    content: attr(data-number);
+    bottom: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    padding: 0.4rem 0 0.1rem;
+    transform-origin: center top;
+}
+
+.d4[data-side='1'] [data-number='2']::after,
+.d4[data-side='2'] [data-number='3']::after,
+.d4[data-side='3'] [data-number='1']::after,
+.d4[data-side='4'] [data-number='1']::after {
+    transform: rotateZ(120deg);
+}
+
+.d4[data-side='1'] [data-number='3']::after,
+.d4[data-side='2'] [data-number='1']::after,
+.d4[data-side='3'] [data-number='2']::after,
+.d4[data-side='4'] [data-number='3']::after {
+    transform: rotateZ(240deg);
+}
+
+.d6 {
+    --width: 50px;
+    font-size: 2rem;
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--width));
+    --luminance: 50%;
+    background-color: hsla(280, 100%, var(--luminance), 0.4);
+    position: absolute;
+}
+
+.d6::after {
+    position: absolute;
+    content: attr(data-side);
+    top: calc(50% - 0.5em);
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.d6[data-side='1'] {
+    --luminance: 30%;
+    transform: rotateY(90deg) translateZ(var(--width));
+}
+
+.d6[data-side='2'] {
+    --luminance: 40%;
+    transform: rotateX(90deg) translateZ(var(--width));
+}
+
+.d6[data-side='3'] {
+    --luminance: 50%;
+    transform: translateZ(var(--width));
+}
+
+.d6[data-side='4'] {
+    --luminance: 60%;
+    transform: rotateY(180deg) translateZ(var(--width));
+}
+
+.d6[data-side='5'] {
+    --luminance: 70%;
+    transform: rotateX(-90deg) translateZ(var(--width));
+}
+
+.d6[data-side='6'] {
+    --luminance: 80%;
+    transform: rotateY(-90deg) translateZ(var(--width));
+}
+
+.d8 {
+    --width: 50px;
+    --height: calc(0.8660254 * var(--width));
+    --center: 0.288675;
+    --center-height: calc(var(--height)*var(--center));
+    --co-center: calc((0.5 - var(--center))*var(--height));
+    --offset: 0.33;
+    --dihedral-angle: 54deg;
+    --co-dihedral: calc(90deg - var(--dihedral-angle));
+    --extrude: calc(var(--width)*var(--offset));
+    --luminance: 100%;
+    font-size: 1.5rem;
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--height));
+    background-color: hsla(190, 10%, var(--luminance), 0.3);
+    position: absolute;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform-origin: 50% 28.8675%;
+    transform-style: preserve-3d;
+}
+
+.d8[data-side='1'] {
+    --luminance: 65%;
+    transform: rotateY(90deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='2'] {
+    --luminance: 70%;
+    transform: rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='3'] {
+    --luminance: 75%;
+    transform: rotateY(180deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='4'] {
+    --luminance: 80%;
+    transform: rotateY(270deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='5'] {
+    --luminance: 85%;
+    transform: rotateX(180deg) translateY(calc(var(--co-center) - (2* var(--height)))) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='6'] {
+    --luminance: 90%;
+    transform: rotateX(180deg) rotateY(90deg) translateY(calc(var(--co-center) - (2* var(--height)))) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='7'] {
+    --luminance: 95%;
+    transform: rotateX(180deg) rotateY(180deg) translateY(calc(var(--co-center) - (2* var(--height)))) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8[data-side='8'] {
+    --luminance: 100%;
+    transform: rotateX(180deg) rotateY(270deg) translateY(calc(var(--co-center) - (2* var(--height)))) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d8::after {
+    background-color: transparent;
+    position: absolute;
+    content: attr(data-side);
+    bottom: calc((100%*var(--center)) - 0.5em);
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.d10 {
+    --width: 30px;
+    --height: calc(1.5 * var(--width));
+    --center: 0.288675;
+    --center-height: calc(var(--height)*var(--center));
+    --co-center: calc((0.5 - var(--center))*var(--height));
+    --offset: 1.23;
+    --dihedral-angle: 49deg;
+    --co-dihedral: calc(90deg - var(--dihedral-angle));
+    --extrude: calc(var(--width)*var(--offset));
+    --luminance: 30%;
+    font-size: 1.5rem;
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--height));
+    background-color: hsla(120, 100%, var(--luminance), 0.4);
+    position: absolute;
+    clip-path: polygon(50% 0%, 0% 73%, 50% 93%, 100% 73%);
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+
+.d10[data-side='1'] {
+    --luminance: 15%;
+    transform: rotateY(72deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='2'] {
+    --luminance: 20%;
+    transform: rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='3'] {
+    --luminance: 25%;
+    transform: rotateY(144deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='4'] {
+    --luminance: 30%;
+    transform: rotateY(216deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='5'] {
+    --luminance: 35%;
+    transform: rotateY(288deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='6'] {
+    --luminance: 40%;
+    transform: rotateX(180deg) translateY(4px) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='7'] {
+    --luminance: 45%;
+    transform: rotateX(180deg) rotateY(72deg) translateY(4px) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='8'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) rotateY(144deg) translateY(4px) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='9'] {
+    --luminance: 25%;
+    transform: rotateX(180deg) rotateY(216deg) translateY(4px) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10[data-side='10'] {
+    --luminance: 20%;
+    transform: rotateX(180deg) rotateY(288deg) translateY(4px) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d10::after {
+    background-color: transparent;
+    position: absolute;
+    content: attr(data-side);
+    bottom: calc(40% - 0.5em);
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.d12 {
+    background-color: rgba(0, 0, 255, 0.3);
+    --width: 40px;
+    --height: calc(1 * var(--width));
+    --center: 0.288675;
+    --center-height: calc(var(--height)*var(--center));
+    --co-center: calc((0.5 - var(--center))*var(--height));
+    --offset: 1.38;
+    --dihedral-angle: 116.57deg;
+    --co-dihedral: calc(90deg - var(--dihedral-angle));
+    --extrude: calc(var(--width)*var(--offset));
+
+    --sidedown: -30px;
+    --rotatex: -10deg;
+    --ex: 60px;
+    --down: -40px;
+    --luminance: 50%;
+    font-size: 1.5rem;
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--height));
+    background-color: hsla(0, 100%, var(--luminance), 0.4);
+    position: absolute;
+    clip-path: polygon(50% 0.5102040816%, 99.53165272% 36.49705629%, 80.6122449% 94.72500629%, 19.3877551% 94.72500629%, 0.4683472789% 36.49705629%);
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+
+.d12[data-side='1'] {
+    --luminance: 40%;
+    transform: rotateX(90deg) translateZ(calc(0px - var(--extrude))) translateY(-2px);
+}
+
+.d12[data-side='2'] {
+    --luminance: 35%;
+    transform: rotateY(72deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='3'] {
+    --luminance: 30%;
+    transform: rotateY(144deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='4'] {
+    --luminance: 35%;
+    transform: rotateY(216deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='5'] {
+    --luminance: 40%;
+    transform: rotateY(288deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='6'] {
+    --luminance: 45%;
+    transform: rotateY(360deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='7'] {
+    --luminance: 40%;
+    transform: rotateX(270deg) translateZ(calc(2px - var(--extrude))) translateY(-2px);
+}
+
+.d12[data-side='8'] {
+    --luminance: 35%;
+    transform: rotateX(180deg) translateY(-4px) rotateY(72deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='9'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) translateY(-4px) rotateY(144deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='10'] {
+    --luminance: 40%;
+    transform: rotateX(180deg) translateY(-4px) rotateY(216deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='11'] {
+    --luminance: 45%;
+    transform: rotateX(180deg) translateY(-4px) rotateY(288deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12[data-side='12'] {
+    --luminance: 35%;
+    transform: rotateX(180deg) translateY(-4px) rotateY(360deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d12::after {
+    background-color: transparent;
+    position: absolute;
+    content: attr(data-side);
+    bottom: calc(43% - 0.5em);
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.d20 {
+    background-color: rgba(0, 0, 255, 0.3);
+    --width: 40px;
+    --height: calc(0.8660254 * var(--width));
+    --center: 0.288675;
+    --center-height: calc(var(--height)*var(--center));
+    --co-center: calc((0.5 - var(--center))*var(--height));
+    --offset: 1.1;
+    --dihedral-angle: 38deg;
+    --co-dihedral: calc(90deg - var(--dihedral-angle));
+    --extrude: calc(var(--width)*var(--offset));
+
+    --sidedown: -30px;
+    --rotatex: -10deg;
+    --ex: 60px;
+    --down: -40px;
+    --luminance: 50%;
+    font-size: 1rem;
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--height));
+    background-color: hsla(240, 100%, var(--luminance), 0.4);
+    position: absolute;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+
+.d20[data-side='1'] {
+    --luminance: 30%;
+    transform: rotateY(72deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='2'] {
+    --luminance: 25%;
+    transform: rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='3'] {
+    --luminance: 30%;
+    transform: rotateY(144deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='4'] {
+    --luminance: 35%;
+    transform: rotateY(216deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='5'] {
+    --luminance: 40%;
+    transform: rotateY(288deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='6'] {
+    --luminance: 45%;
+    transform: rotateX(180deg) rotateY(36deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='7'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) rotateY(108deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='8'] {
+    --luminance: 35%;
+    transform: rotateX(180deg) rotateY(180deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='9'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) rotateY(252deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='10'] {
+    --luminance: 40%;
+    transform: rotateX(180deg) rotateY(324deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='11'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateY(72deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='12'] {
+    --luminance: 25%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='13'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateY(144deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='14'] {
+    --luminance: 35%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateY(216deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='15'] {
+    --luminance: 40%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateY(288deg) rotateX(var(--co-dihedral)) translateZ(var(--extrude));
+}
+
+.d20[data-side='16'] {
+    --luminance: 45%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateX(180deg) rotateY(36deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='17'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateX(180deg) rotateY(108deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='18'] {
+    --luminance: 35%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateX(180deg) rotateY(180deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='19'] {
+    --luminance: 30%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateX(180deg) rotateY(252deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20[data-side='20'] {
+    --luminance: 40%;
+    transform: rotateX(180deg) translateY(var(--down)) rotateX(180deg) rotateY(324deg) translateY(var(--sidedown)) rotateX(var(--rotatex)) translateZ(var(--ex));
+}
+
+.d20::after {
+    background-color: transparent;
+    position: absolute;
+    content: attr(data-side);
+    bottom: calc((100%*var(--center)) - 0.5em);
+    text-align: center;
+    left: 0;
+    right: 0;
+}
