@@ -5,9 +5,54 @@ body {
     color: goldenrod;
     overflow: hidden;
 }
-
 #homePage {
     height: 100vh;
+}
+
+
+#selectCreatePage {
+    height: 100vh;
+}
+
+.returnArrow {
+    color: #c16b00;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1;
+    padding-left: 15px;
+    position: relative;
+    bottom: 20vh;
+    left: 2vw;
+}
+
+.returnArrow::before {
+    border-color: #c16b00;
+    border-style: solid;
+    border-width: 0 0 2px 2px;
+    content: "";
+    display: block;
+    height: 6px;
+    left: 0px;
+    position: absolute;
+    width: 6px;
+    margin-top: -3px;
+    top: 50%;
+    transition: left 0.1s;
+    transform: rotate( 45deg );
+    -webkit-transform: rotate( 45deg );
+}
+
+.returnArrow::after {
+    background: #c16b00;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0px;
+    position: absolute;
+    top: 50%;
+    width: 11px;
+    transition: left 0.1s;
 }
 
 .mainTitle {
