@@ -2,25 +2,33 @@ body {
     height: 100vh;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     font-family: sans-serif;
-    color: #fff;
+    color: goldenrod;
     overflow: hidden;
 }
+
 #homePage {
     height: 100vh;
 }
+
+.mainTitle {
+    text-align: center;
+    font-size: 10em;
+}
+
 .prc {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 80vh;
+    margin-top: 10%;
 }
-.prc .btn {
-    width: 35vw;
-    height: 30%;
-    border-radius: 10px;
-}
+
 .btn {
-    background-color: #1a2682;
-    border: 4px solid;
+    width: 35vw;
+    line-height: 3.8em;
+    text-align: center;
+    font-size: 3.5em;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    background:  radial-gradient(#1a2682, #171d52);
 }
 
