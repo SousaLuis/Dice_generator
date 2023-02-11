@@ -20,12 +20,12 @@
 
 
 #background {
-    z-index: 99;
+    z-index: -1;
 }
 
 #dice {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform-style: preserve-3d;
     animation: spin 10s infinite linear;

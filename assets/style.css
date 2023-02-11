@@ -1,7 +1,142 @@
+html {
+    height: 100%;
+}
+
 body {
-    height: 100vh;
+    height: 100%;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     font-family: sans-serif;
-    color: #fff;
+    color: goldenrod;
     overflow: hidden;
+}
+#homePage {
+    height: 96%;
+}
+
+.hiddenPage {
+    transform: translateY(-100%);
+    display: none;
+}
+
+.returnArrow {
+    color: #c16b00;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1;
+    padding-left: 15px;
+    position: relative;
+
+}
+
+.returnArrow::before {
+    border-color: #c16b00;
+    border-style: solid;
+    border-width: 0 0 2px 2px;
+    content: "";
+    display: block;
+    height: 6px;
+    left: 0px;
+    position: absolute;
+    width: 6px;
+    margin-top: -3px;
+    top: 50%;
+    transition: left 0.1s;
+    transform: rotate( 45deg );
+    -webkit-transform: rotate( 45deg );
+}
+
+.returnArrow::after {
+    background: #c16b00;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0px;
+    position: absolute;
+    top: 50%;
+    width: 11px;
+    transition: left 0.1s;
+}
+
+.mainTitle {
+    margin-top: 0;
+    text-align: center;
+    font-size: 10em;
+}
+
+.prc {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10%;
+}
+
+.btn {
+    width: 35vw;
+    line-height: 3.8em;
+    text-align: center;
+    font-size: 3.5em;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    background:  radial-gradient(#1a2682, #171d52);
+}
+
+.fadeOutLeft {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeOutLeft;
+}
+
+.fadeInRight {
+    display: block;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInRight;
+}
+
+.fadeInLeft {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInLeft;
+}
+
+.fadeOutRight {
+    display: block;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeOutRight;
+}
+
+@keyframes fadeOutLeft {
+    from { opacity: 1 }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0;
+        transform: translateX(100%);
+     }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0;
+    transform: translateX(-100%); }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutRight {
+    from { opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }
