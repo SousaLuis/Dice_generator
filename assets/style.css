@@ -2,13 +2,16 @@ body {
     height: 100vh;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     font-family: sans-serif;
-    color: #fff;
+    color: goldenrod;
     overflow: hidden;
 }
+#homePage {
+    height: 100vh;
+}
+
 
 #selectCreatePage {
     height: 100vh;
-    width: 100vw;
 }
 
 .returnArrow {
@@ -19,7 +22,7 @@ body {
     line-height: 1;
     padding-left: 15px;
     position: relative;
-    bottom: 5vh;
+    bottom: 20vh;
     left: 2vw;
 }
 
@@ -51,3 +54,26 @@ body {
     width: 11px;
     transition: left 0.1s;
 }
+
+.mainTitle {
+    text-align: center;
+    font-size: 10em;
+}
+
+.prc {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10%;
+}
+
+.btn {
+    width: 35vw;
+    line-height: 3.8em;
+    text-align: center;
+    font-size: 3.5em;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    background:  radial-gradient(#1a2682, #171d52);
+}
+
