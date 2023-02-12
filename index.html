@@ -104,7 +104,29 @@
             <div class="btn" id="rightbtn">Utiliser un dé existant</div>
         </div>
     </section>
-    <div id="arrowWrap">
+    <div id="arrowWrap" class="hidden">
+        <div class="returnArrow">Retour</div>    
+    </div>
+    <section id="creation" class="hiddenPage">
+        <div class="topWrap">
+            <div>
+                <label for="diceName">Nom du dé</label>
+                <input name="diceName" id="diceName" class="input" type="text">
+            </div>
+            <div>
+                <label for="nbFace">Nombre de face</label>
+                <input name="nbFace" id="nbFace" class="input" type="number">                
+            </div>
+        </div>
+
+        <fieldset id="faceArray">
+            <legend>Faces :</legend>
+        </fieldset>
+
+        <!-- <div class="btn">Valider</div> -->
+
+    </section>
+    <div id="arrowWrapCreation" class="hidden">
         <div class="returnArrow">Retour</div>    
     </div>
 </body>

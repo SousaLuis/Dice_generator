@@ -7,14 +7,19 @@ body {
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     font-family: sans-serif;
     color: goldenrod;
-    overflow: hidden;
+    overflow: hidden; 
 }
-#homePage {
+
+#homePage, #creation{
     height: 96%;
 }
 
 .hiddenPage {
     transform: translateY(-100%);
+    display: none;
+}
+
+.hidden {
     display: none;
 }
 
@@ -61,7 +66,26 @@ body {
 .mainTitle {
     margin-top: 0;
     text-align: center;
-    font-size: 10em;
+    font-size: 1000%;
+}
+
+#faceArray {
+    height: 80%;
+    width: 80vw;
+    margin-left: 10vw;
+    background: radial-gradient(#1a2682, #171d52);
+}
+
+.faceWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.topWrap {
+    font-size: 400%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .prc {
@@ -73,12 +97,16 @@ body {
 
 .btn {
     width: 35vw;
-    line-height: 3.8em;
+    line-height: 350%;
     text-align: center;
-    font-size: 3.5em;
+    font-size: 325%;
     border: 2px solid goldenrod;
     border-radius: 10px;
     background:  radial-gradient(#1a2682, #171d52);
+}
+
+.hideSubWrap {
+    display: none
 }
 
 .fadeOutLeft {
@@ -105,6 +133,18 @@ body {
     animation-duration: 1.5s;
     animation-fill-mode: both;
     animation-name: fadeOutRight;
+}
+
+.fadeInBottom {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInBottom;
+}
+
+.fadeInTop {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInTop;
 }
 
 @keyframes fadeOutLeft {
@@ -138,5 +178,21 @@ body {
     to {
         opacity: 0;
         transform: translateX(100%);
+    }
+}
+
+@keyframes fadeInBottom {
+    from { opacity: 0;
+    transform: translateY(-100%); }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInTop {
+    from { opacity: 0;
+    transform: translateY(100%); }
+    to {
+        opacity: 1;
     }
 }
